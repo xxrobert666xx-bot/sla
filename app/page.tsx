@@ -42,7 +42,7 @@ const DATA = {
 const COLORS = ['#059669', '#2563eb']; // Emerald para Finanzas, Azul para Logística
 
 export default function SlaDashboard() {
-  const [slas, setSlas] = useState([]);
+  const [slas, setSlas] = useState<any[]>([]);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isMounted, setIsMounted] = useState(false); // Para evitar errores de hidratación con gráficos
   
