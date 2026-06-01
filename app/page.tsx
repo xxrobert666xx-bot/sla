@@ -61,7 +61,19 @@ export default function SlaDashboard() {
     setIsMounted(true);
     fetch('/api/slas')
       .then(res => res.json())
-      .then(data => setSlas(data));
+      .then(data => {
+        // Verificamos si realmente nos devolvió un arreglo de datos
+        if (Array.isArray(data)) {
+          setSlas(data);
+        } else {
+          console.error("Error desde la API:", data);
+          setSlas([]); // Lo dejamos vacío para que no rompa la página
+        }
+      })
+      .catch(error => {
+        console.error("Error de conexión:", error);
+        setSlas([]);
+      });
   }, []);
 
   const handleDepartmentChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
