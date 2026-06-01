@@ -1,0 +1,20 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model SlaRecord {
+  id                 String   @id @default(cuid())
+  department         String   // "Finanzas" o "Logística"
+  serviceName        String   // 1. Identificar servicio de misión crítica
+  criticalHours      String   // 1. Horario de Ventana de SLA
+  availabilityKpi    String   // 2. KPI de Disponibilidad
+  performanceKpi     String   // 2. KPI de Desempeño
+  targetAvailability Float    // 3. Nivel Objetivo (ej: 99.5%)
+  targetPerformance  String   // 3. Nivel Objetivo (ej: "Máximo 5 segundos")
+  penaltyRule        String   // 4. Consecuencia o penalización
+  createdAt          DateTime @default(now())
+}
